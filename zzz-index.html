@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BR's HoyoVerse Builds</title>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="https://github.com/BRHoyoVerseBuilds/BR-HoYoVerse-Builds/blob/main/img/genshin/icon.png?raw=true">
+    <style>
+        /* General reset and styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, Helvetica, sans-serif; background-color: #f1f1f1; }
+    
+        /* Header */
+        .header { 
+            background-color: #f1f1f1; 
+            padding: 20px 10px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .header img { 
+            height: 80px; 
+        }
+        .header-right { 
+            display: flex; 
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .header-right a { 
+            text-decoration: none; 
+            font-size: 16px; /* Reduced font size */
+            color: black; 
+            padding: 12px; 
+            margin-left: 10px; 
+        }
+        .header-right a:hover { 
+            background-color: #ddd; 
+            border-radius: 5px; 
+        }
+    
+        /* Hero section */
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images2.minutemediacdn.com/image/upload/c_crop,w_1918,h_1078,x_0,y_0/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/images/voltaxMediaLibrary/mmsport/video_games/01j8srqq8xdbzkrznv6c.jpg");
+            height: 50vh; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+        }
+        .hero-text h1 { 
+            color: white; 
+            font-size: 30px; /* Reduced for mobile */
+            text-align: center; 
+        }
+        .hero-text p { 
+            color: white; 
+            font-size: 18px; /* Reduced for mobile */
+            text-align: center; 
+        }
+    
+        /* Filter and button styles */
+        .btn-container { 
+            text-align: center; 
+            margin: 20px 0; 
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+        }
+        .btn { 
+            border: none; 
+            padding: 12px 16px; 
+            cursor: pointer; 
+            background-color: #2196F3; 
+            color: white; 
+            margin: 5px; 
+            font-size: 14px; /* Adjusted for better visibility */
+        }
+        .btn:hover { 
+            background-color: #0b7dda; 
+        }
+        .btn.active { 
+            background-color: #666; 
+        }
+    
+        /* Character grid */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px; /* Space between cards */
+        }
+    
+        .column {
+            width: 10%; /* Responsive width for larger screens */
+            background-color: white;
+            margin: 5px; /* Margin for cards */
+            padding: 0; /* Remove padding */
+            border-radius: 5px; /* Slightly smaller border radius */
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            display: none; /* Initially hidden */
+            position: relative; /* Add this */
+        }
+
+        .image-container {
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .image-container h4 {
+            position: absolute; /* Position the header */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for perfect centering */
+            margin: 0;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+            color: white; /* Text color */
+            font-size: 25px !important; /* Force font size */
+            text-align: center;
+            z-index: 10; /* Ensure it is above the image */
+        }
+
+
+
+
+    
+        /* Character card styles */
+        .column img { 
+            width: 100%;
+            height: 65%; 
+ 
+        }
+        .column h4 { 
+            font-size: 14px; /* Smaller font size for the title */
+            padding: 5px 0; /* Reduce padding */
+        }
+        .column p { 
+            font-size: 12px; /* Smaller paragraph size */
+            padding: 5px; 
+            color: gray; 
+        }
+    
+        /* Show cards with the 'show' class */
+        .column.show {
+            display: block !important; /* Show the card */
+        }
+    
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .column {
+                width: 30%; /* 3 cards per row */
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .column {
+                width: 45%; /* 2 cards per row */
+            }
+        }
+    
+        @media (max-width: 500px) {
+            .column {
+                width: 90%; /* 1 card per row */
+            }
+        }
+
+                /* Search input */
+                .search-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .search-input {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+    </style>
+    
+    
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="https://github.com/BRHoyoVerseBuilds/BR-HoYoVerse-Builds/blob/main/img/homepage/header.png?raw=true" alt="BR's HoyoVerse Builds">
+        <div class="header-right">
+            <a href="https://github.com/BRHoyoVerseBuilds/BR-HoYoVerse-Builds/releases/download/Android/br_hoyoverse.apk" class="btn" download>
+                <i class="fa fa-download"></i> Download The Android App!
+            </a>            
+        </div>
+    </div>
+
+    <!-- Main Image / Hero -->
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>Zenless Zone Zero Builds</h1>
+            <p>Find Builds For Your Characters</p>
+        </div>
+    </div>
+
+    <!-- Search Input -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search for characters..." onkeyup="searchCharacters()">
+    </div>
+    
+    <!-- Filter Buttons -->
+    <div class="btn-container" id="myBtnContainer">
+        <button class="btn active" onclick="filterSelection('all')"> Show All</button>
+        <button class="btn" onclick="filterSelection('factions')"> Factions</button>
+        <button class="btn" onclick="filterSelection('ether')"> Ether</button>
+        <button class="btn" onclick="filterSelection('electric')"> Electric</button>
+        <button class="btn" onclick="filterSelection('ice')"> Ice</button>
+        <button class="btn" onclick="filterSelection('fire')"> Fire</button>
+        <button class="btn" onclick="filterSelection('physical')"> Physical</button>
+    </div>
+
+<!-- Character Info Grid Sorted by Name -->
+<div class="row">
+    <!-- Astral Express -->
+    <div class="column factions ether electric ice fire physical">
+        <a href="https://zenless-zone-zero.fandom.com/wiki/Criminal_Investigation_Special_Response_Team">
+            <img src="https://github.com/BRHoyoVerseBuilds/BR-Zenless-Builds/blob/main/img/neps.png?raw=true" alt="Neps">
+        </a>
+        <h4>Criminal Investigation Special Response Team</h4>
+
+    </div>
+
+
+    <!-- Seth  Character Card -->
+<div class="column physical">
+    <a href="https://game8.co/games/Zenless-Zone-Zero/archives/461990">
+        <img src="https://rerollcdn.com/ZZZ/Character/portrait_jane_doe.png" alt="Jane">
+    </a>
+    <h4>Jane Doe</h4>
+    <p>★★★★★</p>
+    <p>Sep 4 - Sep 25 2024.</p>
+</div>
+
+<!-- March 7th Character Card -->
+<div class="column electric">
+    <a href="https://game8.co/games/Zenless-Zone-Zero/archives/460687">
+        <img src="https://rerollcdn.com/ZZZ/Character/portrait_seth.png" alt="Seth">
+    </a>
+    <h4>Seth</h4>  
+    <p>★★★★</p>
+    <p>Last Banner: All Banners</p>
+</div>
+
+
+</div>
+    
+<div class="row">
+    <!-- Astral Express -->
+    <div class="column factions ether electric ice fire physical">
+        <a href="https://zenless-zone-zero.fandom.com/wiki/Victoria_Housekeeping">
+            <img src="https://github.com/BRHoyoVerseBuilds/BR-Zenless-Builds/blob/main/img/vh.png?raw=true" alt="vh">
+        </a>
+        <h4>Victoria Housekeeping</h4>
+
+    </div>
+
+
+
+<div class="column ice">
+    <a href="https://game8.co/games/Zenless-Zone-Zero/archives/436877">
+        <img src="https://rerollcdn.com/ZZZ/Character/portrait_ellen.png" alt="Ellen">
+    </a>
+    <h4>Ellen Joe</h4>
+    <p>★★★★★</p>
+    <p>Jul 04 - Jul 25 2024</p>
+</div>
+
+
+<div class="column physical">
+    <a href="https://game8.co/games/Zenless-Zone-Zero/archives/436885">
+        <img src="https://rerollcdn.com/ZZZ/Character/portrait_corin.png" alt="Corin">
+    </a>
+    <h4>Corin</h4>  
+    <p>★★★★</p>
+    <p>Last Banner: All Banners</p>
+</div>
+
+
+</div>
+  
+
+
+         
+</div>
+
+        
+      
+        <script>
+            // Array of hero image URLs
+            const heroImages = [
+                "https://d1w82usnq70pt2.cloudfront.net/wp-content/uploads/2024/07/zenless-zone-zero-1xqrq-1.jpg", // Replace with actual image URLs
+                "https://geekculture.co/wp-content/uploads/2022/06/zenless-zone-zero-03.jpg", // Replace with actual image URLs
+                "https://sm.ign.com/t/ign_nordic/review/z/zenless-zo/zenless-zone-zero-review_fes2.1200.jpg", // Replace with actual image URLs
+                "https://cdn1.epicgames.com/spt-assets/dcd83ace86fb4501bde1316ca03e29ad/zenless-zone-zero-p6zuh.jpg",  // Replace with actual image URLs
+                "https://fastcdn.hoyoverse.com/content-v2/plat/125120/8f8c72a18d6d5ac4d69e8804b9caf0ed_731841479784624355.jpg",  // Replace with actual image URLs
+                "https://gepig.com/game_cover_460w/7341.jpg"  // Replace with actual image URLs
+            ];
+        
+            // Function to set a random hero image
+            function setRandomHeroImage() {
+                const randomIndex = Math.floor(Math.random() * heroImages.length);
+                const selectedImage = heroImages[randomIndex];
+                document.querySelector('.hero-image').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${selectedImage}")`;
+            }
+        
+            // Call the function to set the random hero image on page load
+            setRandomHeroImage();
+        </script>
+        
+
+        <script>
+            // Filter Functionality
+            function filterSelection(filter) {
+                var columns = document.getElementsByClassName("column");
+                for (var i = 0; i < columns.length; i++) {
+                    columns[i].classList.remove("show");
+                    if (filter === "all" || columns[i].classList.contains(filter)) {
+                        columns[i].classList.add("show");
+                    }
+                }
+                // Remove active class from all buttons
+                var btns = document.getElementsByClassName("btn");
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].classList.remove("active");
+                }
+                // Add active class to the current button
+                event.currentTarget.classList.add("active");
+            }
+    
+            // Search Functionality
+            function searchCharacters() {
+                var input, filter, columns, i, h4, txtValue;
+                input = document.getElementById('searchInput');
+                filter = input.value.toLowerCase();
+                columns = document.getElementsByClassName("column");
+    
+                for (i = 0; i < columns.length; i++) {
+                    h4 = columns[i].getElementsByTagName("h4")[0];
+                    if (h4) {
+                        txtValue = h4.textContent || h4.innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            columns[i].classList.add("show");
+                        } else {
+                            columns[i].classList.remove("show");
+                        }
+                    }
+                }
+            }
+    
+            // Initialize: Show all characters by default
+            document.addEventListener("DOMContentLoaded", function() {
+                filterSelection('all');
+            });
+        </script>
+    
+    
+
+</body>
+</html>
